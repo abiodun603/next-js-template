@@ -45,3 +45,16 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
    node => support node version for the project
    yarn => support yarn version for the project
    npm => only use yarn for this project
+4. ESlint configuration(.eslintrc.json)
+5. Git hooks runs on different stages of the git process
+   To do that we need to add a tool called husky
+    (i) npx husky add .husky/pre-commit "yarn lint"
+      This is done to that for every commit we automatically
+      run yarn lint. to be sure we don't have lint error before the
+      code is been commited
+    (ii)npx husky add .husky/pre-push "yarn build"
+      This is done to that before we push, we are able to run a successful
+      build
+6. Add prepare to our scripts in pakage.json
+  prepare is a special script  that runs wheneven we run yarn install or npm install 
+
