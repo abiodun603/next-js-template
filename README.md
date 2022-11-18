@@ -63,3 +63,15 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
   @commitlint/config-conventational  is the preconfigured setting, standard that developers use
 
   (i) To enable our commit lint we do this npx husky add .husky/commit-msg 'npx --no -- commit --edit "$1"'
+
+8. VSCODE configuration
+  (i) create a .vscode/setting.json, here we tell vscode to usig prettier extension has it default code formatter
+  (ii) create a .vscode/launc.json, where we create a debugging script for vscode
+    automatically configuration for lauching different kind of configuration modes, nextJs on this site provides this configuration(https://nextjs.org/docs/advanced-features/debugging)
+  (iii) add automatic debugging evnironent when running on the dev environment to do that we add a package called cross-env(yarn  add -D cross-env)
+  (iv) We have to update our package.json 
+    {"scripts": {"dev" : "next dev"}}
+    TO
+    {"scripts": {"dev" : "cross-env NODE_OPTIONS='--inspect' next dev"}}
+  
+    this allows us to inspect server-side logs in the browser when running in development mode, as this may cause some security issues if you are running on production environment
