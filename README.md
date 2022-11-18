@@ -61,3 +61,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
   members of our team  are consistent.
   @commitlint/cli is what is going to enforce the commit
   @commitlint/config-conventational  is the preconfigured setting, standard that developers use
+
+  (i) To enable our commit lint we do this npx husky add .husky/commit-msg 'npx --no -- commit --edit "$1"'
