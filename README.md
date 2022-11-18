@@ -57,4 +57,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
       build
 6. Add prepare to our scripts in pakage.json
   prepare is a special script  that runs wheneven we run yarn install or npm install 
-
+7: Add a linter to our commit messages, so make sure that our commit messages between
+  members of our team  are consistent.
+  @commitlint/cli is what is going to enforce the commit
+  @commitlint/config-conventational  is the preconfigured setting, standard that developers use
