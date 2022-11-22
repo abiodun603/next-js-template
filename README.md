@@ -75,3 +75,65 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
     {"scripts": {"dev" : "cross-env NODE_OPTIONS='--inspect' next dev"}}
   
     this allows us to inspect server-side logs in the browser when running in development mode, as this may cause some security issues if you are running on production environment
+9. Directory structure
+  1. component 
+  2. lib folder
+10. Storybook for testing
+  Storybook is more of visual compare to e2e or unit testing library
+  it is not a dependency becos it does so many things, it create so many configuration and file within our project so therefore we run with npx package manager (npx sb init --builder webpack5) and we will be using the webpack 5 builder
+
+  (i) configure eslint.json for story book
+    "extends": ["plugin:storybook/recommended"],
+    also the override configuration from story book documentation
+
+    "overrides": [
+    {
+      "files": ["*.stories.@(ts|tsx|js|jsx|mjs|cjs)"],
+      // example of overriding a rule
+      // "storybook/hierarchy-separator": "error"
+    }
+  ]
+  as of this time the storybook/hierarchy-separator" was depreciated in storybook verson 6 (read more at https://github.com/storybookjs/eslint-plugin-storybook/blob/main/docs/rules/hierarchy-separator.md)
+
+10. Edit the package.json to ensure that storybook is using webpack5 builder
+  "resolutions": {
+    "webpack": "^5"
+  }
+  because of this change we need to do "yarn install" in order to make our tool use webpack5 builder
+
+  (i) update the .storybook/main.js
+    Changed the story patterns we don't want to import story only from the story directory, but put them in the component themselves
+    "stories": [
+      "../**/*.stories.mdx",
+      "../**/*.stories.@(js|jsx|ts|tsx)"
+    ],
+  (ii) We need to tell story book where our static assets directory is located
+  (iii) Edit the .storybook/preview.js => where especially if we are working with   nextjs file we need to tell story book how to work with nextjs specific image component
+  
+  Issue Faced When Using Storybook for webpack5 was that i neeed at fallback util.
+  (
+    error-message: If you want to include a polyfill, you need to: - add a fallback 'resolve.fallback: { "util": require.resolve("util/") }' - install 'util'
+  ) 
+  This was achieved by doing the following.
+  - Install the util dependency (yarn add util)
+  - Create a webpack.config.js file in the root directory
+  - add the below to the config file (refernce: https://stackoverflow.com/questions/64402821/module-not-found-error-cant-resolve-util-in-webpack)
+    module.exports = {
+      // ...
+      resolve: {
+          fallback: {
+            util: require.resolve("util/")
+          }
+      }
+      // ...
+    };
+11. Componenet Templating
+   -Base Templating
+   -Story Book
+   -Image Domain Validation
+
+12. Layout
+
+13. Adding tailwind configure to storybook
+  1. yarn add -D @storybook/addon-postcss
+  2. yarn add -D storybook-css-modules-preset // if you ar using modules css styling pattern
