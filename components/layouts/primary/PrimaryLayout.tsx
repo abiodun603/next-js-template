@@ -1,6 +1,4 @@
 import Head from 'next/head';
-import Footer from '../../navigation/footer/Footer';
-import Header from '../../navigation/header/Header';
 
 export interface IPrimaryLayout {
   children: React.ReactNode;
@@ -13,10 +11,10 @@ const PrimaryLayout: React.FC<IPrimaryLayout> = ({ children }) => {
         <title>NextJs fullstact App Template</title>
       </Head>
       <div className="min-h-screen flex flex-col items-center">
-        <Header/>
+        {/* <Header/> */}
         <main>{children}</main>
-        <div className="mx-auto"/>
-        <Footer/>
+        <div className="mx-auto" />
+        {/* <Footer/> */}
       </div>
     </>
   );

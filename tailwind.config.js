@@ -5,6 +5,10 @@ module.exports = {
     './components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
+    colors: {
+      kprimary: '#61B320',
+      kblack: '#333333',
+    },
     screens: {
       xs: '375px',
       sm: '600px',
